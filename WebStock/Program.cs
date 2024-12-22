@@ -3,33 +3,23 @@ using Microsoft.Extensions.Options;
 using WebStock.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<WebStockContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WebStockContext")));
+
+builder.Services.AddScoped<SeedingService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddDbContext<WebStockContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WebStockContext")));
-
-var options = builder.Services.AddDbContext<WebStockContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WebStockContext")));
-
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (app.Environment.IsDevelopment())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<WebStockContext>();
-    try
+    using (var scope = app.Services.CreateScope())
     {
-        if (dbContext.Database.CanConnect())
-        {
-            Console.WriteLine("Conexão com o banco de dados bem-sucedida!");
-        }
-        else
-        {
-            Console.WriteLine("Não foi possível conectar ao banco de dados.");
-        }
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Erro ao conectar ao banco de dados: {ex.Message}");
+        var context = scope.ServiceProvider.GetRequiredService<WebStockContext>();
+        var seeding = scope.ServiceProvider.GetRequiredService<SeedingService>();
+
+        await seeding.SeedAsync();
     }
 }
 
