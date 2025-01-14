@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebStock.Data;
+using WebStock.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<WebStockContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("WebStockContext")));
 
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<ProductService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
