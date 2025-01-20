@@ -17,5 +17,10 @@ namespace WebStock.Service
         {
             return await _webStockContext.Product.Include(x => x.Category).ToListAsync();
         }
+
+        public async Task<Product> FindByIdAsync(int id)
+        {
+            return await _webStockContext.Product.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

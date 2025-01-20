@@ -1,0 +1,56 @@
+﻿@model WebStock.Models.Product;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="container mt-4">
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Name):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Description):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.PurchasePrice):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.PurchasePrice)
+        </dd>
+        <dt class ="col-sm-3">
+            @Html.DisplayNameFor(model => model.SalePrice):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.SalePrice)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.StockQuantity):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.StockQuantity)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.ExpirationDate):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ExpirationDate)
+        </dd>
+        <dt class="col-sm-3">
+            @Html.DisplayNameFor(model => model.Category.Name):
+        </dt>
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+    </dl>
+</div>
