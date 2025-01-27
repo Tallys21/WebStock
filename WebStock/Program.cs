@@ -8,6 +8,7 @@ builder.Services.AddDbContext<WebStockContext>(options => options.UseSqlServer(b
 
 builder.Services.AddScoped<SeedingService>();
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<CategoryService>();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

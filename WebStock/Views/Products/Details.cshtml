@@ -26,13 +26,13 @@
             @Html.DisplayNameFor(model => model.PurchasePrice):
         </dt>
         <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.PurchasePrice)
+            @Html.DisplayFor(model => model.PurchasePriceFormatted)
         </dd>
         <dt class ="col-sm-3">
             @Html.DisplayNameFor(model => model.SalePrice):
         </dt>
         <dd class="col-sm-9">
-            @Html.DisplayFor(model => model.SalePrice)
+            @Html.DisplayFor(model => model.SalePriceFormatted)
         </dd>
         <dt class="col-sm-3">
             @Html.DisplayNameFor(model => model.StockQuantity):
@@ -53,4 +53,8 @@
             @Html.DisplayFor(model => model.Category.Name)
         </dd>
     </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-outline-primary">Edit</a>
+    <a asp-action="Index" type="button" class="btn btn-outline-info">Back to List</a>
 </div>

@@ -1,0 +1,59 @@
+﻿@model WebStock.Models.ViewModels.ProductFormViewModel;
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+<h4>Product</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6"> 
+        <form asp-action="Edit">
+            <input type="hidden" asp-for="Product.Id" />
+            <div class="mb-3">
+                <label asp-for="Product.Name" class="control-label">@Html.DisplayNameFor(model => model.Product.Name) :</label>
+                <input asp-for="Product.Name" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.Description" class="control-label">@Html.DisplayNameFor(model => model.Product.Description) :</label>
+                <input asp-for="Product.Description" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.PurchasePrice" class="control-label">@Html.DisplayNameFor(model => model.Product.PurchasePrice) :</label>
+                <input asp-for="Product.PurchasePrice" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.PurchasePrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.SalePrice" class="control-label">@Html.DisplayNameFor(model => model.Product.SalePrice) :</label>
+                <input asp-for="Product.SalePrice" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.SalePrice" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.StockQuantity" class="control-label">@Html.DisplayNameFor(model => model.Product.StockQuantity) :</label>
+                <input asp-for="Product.StockQuantity" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.StockQuantity" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.ExpirationDate" class="control-label">@Html.DisplayNameFor(model => model.Product.ExpirationDate) :</label>
+                <input asp-for="Product.ExpirationDate" class="form-control" style="color:black" />
+                <span asp-validation-for="Product.ExpirationDate" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Product.CategoryId" class="control-label">@Html.DisplayNameFor(model => model.Product.Category) :</label>
+                <select asp-for="Product.CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))" class="form-control" style="color:black"></select>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Save" class="btn btn-outline-success" />
+                <a asp-action="Index" type="button" class="btn btn-outline-info">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+}
