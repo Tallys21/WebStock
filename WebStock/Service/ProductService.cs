@@ -24,6 +24,20 @@ namespace WebStock.Service
             return await _context.Product.Include(x => x.Category).FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task RemoveAsync(int id)
+        {
+            try
+            {
+                var obj = _context.Product.Find(id);
+                _context.Remove(obj);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new IntegrityException(ex.Message);
+            }
+        }
+
         public async Task UpdateAsync(Product product)
         {
             bool hasAny = await _context.Product.AnyAsync(x => x.Id == product.Id);
